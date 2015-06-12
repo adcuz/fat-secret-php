@@ -40,7 +40,7 @@ class Client {
 	* @param secret {string} The secret for the newly created profile is returned here
 	*/
 	function ProfileCreate($userID, &$token, &$secret){
-		$url = FatSecretAPI::$base . 'method=profile.create';
+		$url = Client::$base . 'method=profile.create';
 		
 		if(!empty($userID)){
 			$url = $url . '&user_id=' . $userID;
@@ -67,7 +67,7 @@ class Client {
 	* @param secret {string} The secret for the profile is returned here
 	*/
 	function ProfileGetAuth($userID, &$token, &$secret){
-		$url = FatSecretAPI::$base . 'method=profile.get_auth&user_id=' . $userID;
+		$url = Client::$base . 'method=profile.get_auth&user_id=' . $userID;
 		
 		$oauth = new OAuthBase();
 		
@@ -93,7 +93,7 @@ class Client {
 	* @param sessionKey {string} The session key for the newly created session is returned here
 	*/
 	function ProfileRequestScriptSessionKey($auth, $expires, $consumeWithin, $permittedReferrerRegex, $cookie, &$sessionKey){
-		$url = FatSecretAPI::$base . 'method=profile.request_script_session_key';
+		$url = Client::$base . 'method=profile.request_script_session_key';
 		
 		if(!empty($auth['user_id'])){
 			$url = $url . '&user_id=' . $auth['user_id'];
