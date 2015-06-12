@@ -1,0 +1,16 @@
+{
+    "name": "adcuz/fat-secret-php",
+    "description": "Fatsecret PHP client packaged for Composer.",
+    "authors": [
+        {
+            "name": "Adam Currie",
+            "email": "adamcurrie.dev@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Adcuz\\FatSecret\\": "src"
+        }
+    }
+}
