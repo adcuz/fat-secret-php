@@ -50,11 +50,11 @@ class OAuthBase {
 	}
 	
     private function GetQueryParameters($paramString) {
-        $elements = split('&',$paramString);
+        $elements = explode('&',$paramString);
         $result = array();
         foreach ($elements as $element)
         {
-            list($key,$token) = split('=',$element);
+            list($key,$token) = explode('=',$element);
             if($token)
                 $token = urldecode($token);
             if(!empty($result[$key]))
