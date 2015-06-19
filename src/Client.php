@@ -36,10 +36,14 @@ class Client {
         $this->_consumerSecret = $consumerSecret;
     }
 
-    function SearchFood($query) {
+    function SearchFood($query, $region = false) {
         $url = Client::$base . 'method=foods.search';
 
         $url = $url . '&search_expression=' . urlencode($query);
+        
+        if ($region !== false) {
+            $url = $url . '&region=' . urlencode($region);
+        }
 
         $oauth = new OAuthBase();
 
