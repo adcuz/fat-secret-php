@@ -63,6 +63,24 @@ class Client {
         
     }
 
+    function FindIdForBarcode($barcode) {
+        $url = Client::$base . 'method=food.find_id_for_barcode';
+
+        $url = $url . '&barcode=' . urlencode($barcode);
+
+        $oauth = new OAuthBase();
+
+        $normalizedUrl;
+        $normalizedRequestParameters;
+
+        $signature = $oauth->GenerateSignature($url, $this->_consumerKey, $this->_consumerSecret, ''/* token */, ''/* secret */, $normalizedUrl, $normalizedRequestParameters);
+
+        $response = $this->GetQueryResponse($normalizedUrl, $normalizedRequestParameters . '&' . OAuthBase::$OAUTH_SIGNATURE . '=' . urlencode($signature));
+
+        return $response;
+
+    }
+
     function GetFood($foodId, $subCats = false, $flagDefaultServing = false) {
         $url = Client::$base . 'method=food.get';
 
