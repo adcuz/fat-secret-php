@@ -63,10 +63,18 @@ class Client {
         
     }
 
-    function FindIdForBarcode($barcode) {
+    function FindIdForBarcode($barcode, $region = false, $language = false) {
         $url = Client::$base . 'method=food.find_id_for_barcode';
 
         $url = $url . '&barcode=' . urlencode($barcode);
+
+        if ($region !== false) {
+            $url = $url . '&region=' . urlencode($region);
+        }
+        
+        if ($language !== false) {
+            $url = $url . '&language=' . urlencode($language);
+        }
 
         $oauth = new OAuthBase();
 
