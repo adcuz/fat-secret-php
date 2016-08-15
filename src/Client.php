@@ -5,6 +5,7 @@ namespace Adcuz\FatSecret;
 class Client {
 
     static public $base = 'http://platform.fatsecret.com/rest/server.api?format=json&';
+    public $maxResults = 20;
 
     /* Private Data */
     private $_consumerKey;
@@ -28,6 +29,14 @@ class Client {
         $this->_consumerKey = $consumerKey;
     }
 
+    function GetMaxResults() {
+        return $this->maxResults;
+    }
+
+    function SetMaxResults($maxResults) {
+        $this->maxResults = $maxResults;
+    }
+
     function GetSecret() {
         return $this->_consumerSecret;
     }
@@ -36,7 +45,7 @@ class Client {
         $this->_consumerSecret = $consumerSecret;
     }
 
-    function SearchFood($query, $region = false, $language = false) {
+    function SearchFood($query, $region = false, $language = false, $maxResults = false) {
         
         $url = Client::$base . 'method=foods.search';
 
@@ -48,6 +57,12 @@ class Client {
         
         if ($language !== false) {
             $url = $url . '&language=' . urlencode($language);
+        }
+
+        if ($maxResults !== false) {
+            $this->SetMaxResults($maxResults);
+
+            $url = $url . '&max_results=' . $this->GetMaxResults();
         }
 
         $oauth = new OAuthBase();
